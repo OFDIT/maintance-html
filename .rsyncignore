@@ -1,0 +1,9 @@
+# Rsync ignore file for deployment
+# Only include index.html and styles.css
+
+# Exclude everything by default
+*
+
+# Then include only what we want
+!index.html
+!styles.css
