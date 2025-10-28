@@ -126,22 +126,6 @@ else
     print_warning "Local and remote have diverged"
 fi
 
-# Check if required files exist
-print_step "Checking required files..."
-MISSING_FILES=()
-if [ ! -f "index.html" ]; then
-    MISSING_FILES+=("index.html")
-fi
-if [ ! -f "styles.css" ]; then
-    MISSING_FILES+=("styles.css")
-fi
-
-if [ ${#MISSING_FILES[@]} -gt 0 ]; then
-    print_error "Missing required files: ${MISSING_FILES[*]}"
-    exit 1
-fi
-print_success "All required files present"
-
 # Test SSH connection
 print_step "Testing SSH connection to $REMOTE_USER@$REMOTE_HOST..."
 if ! ssh -p "$SSH_PORT" -o ConnectTimeout=10 -o BatchMode=yes "$REMOTE_USER@$REMOTE_HOST" exit 2>/dev/null; then
